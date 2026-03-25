@@ -1,0 +1,335 @@
+{
+  "project_key": "LOGIN",
+  "items": [
+    {
+      "id": "EPIC-1",
+      "type": "epic",
+      "title": "Build login interface and client-side validation",
+      "description": "Deliver a user-friendly login screen with required fields, masked password entry, submission controls, and clear validation messaging aligned with the SRS.",
+      "acceptance_criteria": [
+        "Login screen includes email/username input, password input, login button, app logo/title, and a visible validation/error area.",
+        "Password input masks characters during entry and never renders plain text in the UI.",
+        "Empty required fields are blocked before authentication submission and show clear validation feedback.",
+        "When email format validation is applicable, invalid email format is detected and a user-facing error is shown.",
+        "Layout is responsive and usable on modern desktop and mobile browsers."
+      ],
+      "labels": ["ai-generated", "login", "ui", "validation"],
+      "status": "ready",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "STORY-1",
+      "type": "story",
+      "title": "As a registered user, I can enter credentials on a login form",
+      "description": "Provide the login form experience so users can submit username/email and password from a clear, accessible interface.",
+      "acceptance_criteria": [
+        "User can open a dedicated login page when unauthenticated.",
+        "Form provides username/email and password inputs and a Login button.",
+        "Password field masks entered characters.",
+        "The login page renders consistently in supported modern browsers."
+      ],
+      "labels": ["ai-generated", "story", "login", "ui"],
+      "status": "ready",
+      "parent_id": "EPIC-1",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "TASK-1",
+      "type": "task",
+      "title": "Implement login page UI components",
+      "description": "Create the login page with app title/logo, credential fields, login button, and validation message container.",
+      "acceptance_criteria": [
+        "Login page contains app title/logo, username/email field, password field, login button, and message area.",
+        "All fields and controls are keyboard accessible with visible focus states.",
+        "UI matches approved style guidelines for spacing, labels, and control states."
+      ],
+      "labels": ["ai-generated", "task", "frontend", "ui"],
+      "status": "ready",
+      "parent_id": "STORY-1",
+      "assignee": null,
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-2",
+      "type": "task",
+      "title": "Add client-side required-field and email-format validation",
+      "description": "Validate empty username/email and password fields before submit and apply email format checks when email identifiers are used.",
+      "acceptance_criteria": [
+        "Submitting with empty username/email shows an explicit field error.",
+        "Submitting with empty password shows an explicit field error.",
+        "Invalid email format is rejected with a clear message when an email value is entered.",
+        "Valid inputs proceed to server authentication request without client-side validation errors."
+      ],
+      "labels": ["ai-generated", "task", "frontend", "validation"],
+      "status": "ready",
+      "parent_id": "STORY-1",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "TASK-3",
+      "type": "task",
+      "title": "Implement user-friendly login error presentation",
+      "description": "Display clear, understandable validation and authentication errors without exposing sensitive credential details.",
+      "acceptance_criteria": [
+        "Validation errors appear near the related field or at form level per UI requirement.",
+        "Authentication failures display only a generic message such as invalid username/email or password.",
+        "Error states clear appropriately when the user corrects input and resubmits."
+      ],
+      "labels": ["ai-generated", "task", "frontend", "ux"],
+      "status": "ready",
+      "parent_id": "STORY-1",
+      "assignee": null,
+      "priority": "Medium"
+    },
+    {
+      "id": "EPIC-2",
+      "type": "epic",
+      "title": "Implement authentication, session lifecycle, and logout",
+      "description": "Provide secure credential verification, session creation/maintenance, successful-login redirect behavior, and logout session termination.",
+      "acceptance_criteria": [
+        "Submitted credentials are authenticated against stored user records.",
+        "Valid credentials create an authenticated session and route user to dashboard/home.",
+        "Invalid credentials are denied without disclosing whether username/email or password failed.",
+        "Authenticated session persists until logout or configured session expiry.",
+        "Logout terminates the active session and redirects to login page."
+      ],
+      "labels": ["ai-generated", "login", "authentication", "session"],
+      "status": "ready",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "STORY-2",
+      "type": "story",
+      "title": "As a registered user, I can log in and reach my authorized landing page",
+      "description": "Authenticate valid credentials and redirect authenticated users to the dashboard/home page.",
+      "acceptance_criteria": [
+        "System verifies submitted credentials against persisted user records.",
+        "Valid credentials return a success result and establish an authenticated session/token.",
+        "After successful authentication, user is redirected to dashboard/home.",
+        "Invalid credentials are rejected and user remains on login page with a generic error."
+      ],
+      "labels": ["ai-generated", "story", "authentication"],
+      "status": "ready",
+      "parent_id": "EPIC-2",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "TASK-4",
+      "type": "task",
+      "title": "Build backend credential authentication endpoint",
+      "description": "Implement server-side authentication logic to compare submitted credentials with stored account data.",
+      "acceptance_criteria": [
+        "Endpoint accepts username/email and password payload over HTTPS.",
+        "Credential verification uses hashed password comparison against stored user record.",
+        "Valid credentials produce authenticated success response with session/token payload.",
+        "Invalid credentials produce a failure response mapped to generic login error behavior."
+      ],
+      "labels": ["ai-generated", "task", "backend", "authentication"],
+      "status": "ready",
+      "parent_id": "STORY-2",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "TASK-5",
+      "type": "task",
+      "title": "Implement post-login redirect flow",
+      "description": "Ensure authenticated users are routed from login to the authorized landing page after successful authentication.",
+      "acceptance_criteria": [
+        "On successful authentication, client navigates user to dashboard/home route.",
+        "If redirect target is unavailable, system falls back to a safe default authorized page.",
+        "Redirect logic runs only after authenticated state/session is established."
+      ],
+      "labels": ["ai-generated", "task", "frontend", "routing"],
+      "status": "ready",
+      "parent_id": "STORY-2",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "STORY-3",
+      "type": "story",
+      "title": "As an authenticated user, I can log out securely",
+      "description": "Provide logout capability that terminates active session and returns user to login page.",
+      "acceptance_criteria": [
+        "Authenticated UI exposes a logout action.",
+        "Logout invalidates the active session/token server-side.",
+        "After logout, user is redirected to login page.",
+        "After logout, previously protected pages are no longer accessible without re-authentication."
+      ],
+      "labels": ["ai-generated", "story", "logout", "session"],
+      "status": "ready",
+      "parent_id": "EPIC-2",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "TASK-6",
+      "type": "task",
+      "title": "Add logout control and handler",
+      "description": "Expose logout in authenticated navigation and invoke session termination workflow.",
+      "acceptance_criteria": [
+        "Logout control is visible only when user is authenticated.",
+        "Triggering logout calls backend/session termination endpoint.",
+        "Client clears local authentication state and navigates to login page on success."
+      ],
+      "labels": ["ai-generated", "task", "frontend", "logout"],
+      "status": "ready",
+      "parent_id": "STORY-3",
+      "assignee": null,
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-7",
+      "type": "task",
+      "title": "Implement server-side session invalidation on logout",
+      "description": "Terminate active session/token artifacts when logout is requested.",
+      "acceptance_criteria": [
+        "Logout request marks active session/token as invalid for subsequent requests.",
+        "System returns success response when session invalidation completes.",
+        "Subsequent requests with invalidated session/token are treated as unauthenticated."
+      ],
+      "labels": ["ai-generated", "task", "backend", "session"],
+      "status": "ready",
+      "parent_id": "STORY-3",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "EPIC-3",
+      "type": "epic",
+      "title": "Enforce access control and security hardening for login flow",
+      "description": "Protect restricted routes, enforce secure transport and credential handling, and apply session security controls for unauthenticated access attempts.",
+      "acceptance_criteria": [
+        "Unauthenticated users are prevented from accessing protected routes and redirected to login.",
+        "Authentication failures never disclose whether username/email or password is incorrect.",
+        "Credentials and authentication traffic are handled only via secure protocols.",
+        "Session inactivity timeout is defined and enforced.",
+        "Password storage uses hashed format and plain-text display is prevented."
+      ],
+      "labels": ["ai-generated", "security", "access-control", "login"],
+      "status": "ready",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "STORY-4",
+      "type": "story",
+      "title": "As an unauthenticated user, I am redirected away from protected pages",
+      "description": "Ensure protected routes require authentication and redirect unauthorized access attempts to login.",
+      "acceptance_criteria": [
+        "Protected routes check authenticated state before rendering restricted content.",
+        "Unauthenticated access attempt redirects to login page.",
+        "After successful login, user can access previously requested protected area if supported by routing design."
+      ],
+      "labels": ["ai-generated", "story", "access-control"],
+      "status": "needs-review",
+      "parent_id": "EPIC-3",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "TASK-8",
+      "type": "task",
+      "title": "Implement route guard middleware for protected pages",
+      "description": "Create reusable middleware/guard checks that block unauthenticated requests and issue login redirects.",
+      "acceptance_criteria": [
+        "Each protected route invokes shared authentication guard logic.",
+        "Guard denies unauthenticated requests and triggers redirect to login endpoint/page.",
+        "Authenticated requests pass through and render requested protected resource."
+      ],
+      "labels": ["ai-generated", "task", "backend", "access-control"],
+      "status": "ready",
+      "parent_id": "STORY-4",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "STORY-5",
+      "type": "story",
+      "title": "As a security stakeholder, I need hardened authentication controls",
+      "description": "Implement key security NFRs for password protection, secure transport, and non-revealing authentication failure handling.",
+      "acceptance_criteria": [
+        "System uses HTTPS for login and authentication-related requests in deployed environments.",
+        "Password values are stored and verified as hashed values, not plaintext.",
+        "Authentication failure message remains generic and does not reveal credential component validity.",
+        "Sensitive authentication logs do not include plaintext passwords."
+      ],
+      "labels": ["ai-generated", "story", "security"],
+      "status": "ready",
+      "parent_id": "EPIC-3",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "TASK-9",
+      "type": "task",
+      "title": "Enforce HTTPS and secure authentication transport settings",
+      "description": "Configure application and infrastructure integration points to require secure transport for login flows.",
+      "acceptance_criteria": [
+        "Authentication endpoints reject or redirect insecure HTTP requests according to deployment policy.",
+        "Application configuration documents required TLS/HTTPS settings for environments.",
+        "Security verification confirms no credential submission occurs over plaintext transport."
+      ],
+      "labels": ["ai-generated", "task", "security", "infrastructure"],
+      "status": "needs-review",
+      "parent_id": "STORY-5",
+      "assignee": null,
+      "priority": "High"
+    },
+    {
+      "id": "TASK-10",
+      "type": "task",
+      "title": "Implement hashed password storage and verification",
+      "description": "Ensure credentials are stored and checked using approved password hashing algorithms.",
+      "acceptance_criteria": [
+        "User password records are stored as salted hash values.",
+        "Authentication compares submitted password to stored hash with approved verifier.",
+        "No code path logs or returns plaintext password data."
+      ],
+      "labels": ["ai-generated", "task", "backend", "security"],
+      "status": "ready",
+      "parent_id": "STORY-5",
+      "assignee": null,
+      "priority": "Highest"
+    },
+    {
+      "id": "STORY-6",
+      "type": "story",
+      "title": "As a product owner, I need clearly defined session timeout behavior",
+      "description": "Define and implement inactivity-based session expiry to satisfy security and usability requirements.",
+      "acceptance_criteria": [
+        "A specific inactivity timeout duration is documented and approved.",
+        "Session automatically expires after configured inactivity period.",
+        "Expired session forces re-authentication on next protected action.",
+        "Timeout behavior is covered by automated tests."
+      ],
+      "labels": ["ai-generated", "story", "session", "security"],
+      "status": "needs-review",
+      "parent_id": "EPIC-3",
+      "assignee": null,
+      "priority": "Medium"
+    },
+    {
+      "id": "TASK-11",
+      "type": "task",
+      "title": "Implement inactivity-based session expiration",
+      "description": "Add session expiry checks that invalidate sessions after agreed inactivity duration.",
+      "acceptance_criteria": [
+        "Session inactivity timestamp updates on authenticated activity.",
+        "Sessions exceeding configured inactivity duration are invalidated.",
+        "Expired sessions cannot access protected endpoints and are redirected to login."
+      ],
+      "labels": ["ai-generated", "task", "backend", "session"],
+      "status": "needs-review",
+      "parent_id": "STORY-6",
+      "assignee": null,
+      "priority": "Medium"
+    }
+  ]
+}
