@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/backlog.schema.json",
+  "title": "SRS-to-Jira Backlog Schema",
+  "type": "object",
+  "required": ["project_key", "items"],
+  "properties": {
+    "project_key": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Jira project key where issues will be created."
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/backlog_item"
+      }
+    }
+  },
+  "$defs": {
+    "backlog_item": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "title",
+        "description",
+        "acceptance_criteria",
+        "labels",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique local identifier in this backlog payload (e.g. EPIC-1, STORY-3)."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["epic", "story", "task", "subtask"]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "labels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "contains": {
+            "const": "ai-generated"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ready", "needs-review"]
+        },
+        "parent_id": {
+          "type": "string",
+          "description": "Required for story/task/subtask to reference local id of parent backlog item."
+        },
+        "assignee": {
+          "type": ["string", "null"]
+        },
+        "priority": {
+          "type": ["string", "null"],
+          "enum": ["Highest", "High", "Medium", "Low", "Lowest", null]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "epic" } }
+          },
+          "then": {
+            "not": { "required": ["parent_id"] }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "enum": ["story", "task", "subtask"] } }
+          },
+          "then": {
+            "required": ["parent_id"]
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
