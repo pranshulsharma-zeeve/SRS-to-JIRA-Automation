@@ -18,8 +18,10 @@ import json
 import os
 import sys
 from typing import Any, Dict, List, Tuple
+from urllib.parse import urlparse
 
 import requests
+from requests.exceptions import ProxyError, RequestException
 
 
 ISSUE_TYPE_MAP = {
@@ -57,14 +59,31 @@ def jira_request(
     payload: Dict[str, Any],
 ) -> Dict[str, Any]:
     url = f"{base_url.rstrip('/')}{endpoint}"
-    response = requests.request(
-        method=method,
-        url=url,
-        auth=(email, token),
-        headers={"Accept": "application/json", "Content-Type": "application/json"},
-        json=payload,
-        timeout=30,
-    )
+    request_kwargs = {
+        "method": method,
+        "url": url,
+        "auth": (email, token),
+        "headers": {"Accept": "application/json", "Content-Type": "application/json"},
+        "json": payload,
+        "timeout": 30,
+    }
+
+    try:
+        response = requests.request(**request_kwargs)
+    except ProxyError as first_proxy_error:
+        # Retry once without environment proxy settings. This addresses
+        # environments where HTTPS proxy rules block Atlassian traffic.
+        try:
+            with requests.Session() as session:
+                session.trust_env = False
+                response = session.request(**request_kwargs)
+        except RequestException as second_error:
+            raise RuntimeError(
+                "Unable to reach Jira API. Proxy request failed and direct connection "
+                f"also failed. Proxy error: {first_proxy_error}; direct error: {second_error}"
+            ) from second_error
+    except RequestException as request_error:
+        raise RuntimeError(f"Unable to reach Jira API endpoint {endpoint}: {request_error}") from request_error
 
     if response.status_code >= 400:
         raise RuntimeError(
@@ -155,8 +174,12 @@ def main() -> int:
         return 1
 
     backlog = load_backlog(args.backlog)
-    project_key: str = backlog["project_key"]
+    project_key: str = os.getenv("JIRA_PROJECT_KEY") or backlog["project_key"]
     items: List[Dict[str, Any]] = backlog["items"]
+
+    host = urlparse(base_url).netloc
+    print(f"Using Jira host: {host}")
+    print(f"Using Jira project key: {project_key}")
 
     epics, story_tasks, subtasks = split_items(items)
 
