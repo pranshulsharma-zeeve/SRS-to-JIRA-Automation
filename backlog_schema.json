@@ -28,7 +28,8 @@
         "description",
         "acceptance_criteria",
         "labels",
-        "status"
+        "status",
+        "original_estimate"
       ],
       "properties": {
         "id": {
@@ -80,6 +81,16 @@
         "priority": {
           "type": ["string", "null"],
           "enum": ["Highest", "High", "Medium", "Low", "Lowest", null]
+        },
+        "original_estimate": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required Jira original estimate (for example: 30m, 2h, 1d, 1w)."
+        },
+        "remaining_estimate": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "description": "Optional Jira remaining estimate. If omitted, defaults to original_estimate during issue creation."
         }
       },
       "allOf": [

@@ -13,10 +13,17 @@
         "When email format validation is applicable, invalid email format is detected and a user-facing error is shown.",
         "Layout is responsive and usable on modern desktop and mobile browsers."
       ],
-      "labels": ["ai-generated", "login", "ui", "validation"],
+      "labels": [
+        "ai-generated",
+        "login",
+        "ui",
+        "validation"
+      ],
       "status": "ready",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-1",
@@ -29,11 +36,18 @@
         "Password field masks entered characters.",
         "The login page renders consistently in supported modern browsers."
       ],
-      "labels": ["ai-generated", "story", "login", "ui"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "login",
+        "ui"
+      ],
       "status": "ready",
       "parent_id": "EPIC-1",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-1",
@@ -45,11 +59,18 @@
         "All fields and controls are keyboard accessible with visible focus states.",
         "UI matches approved style guidelines for spacing, labels, and control states."
       ],
-      "labels": ["ai-generated", "task", "frontend", "ui"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "frontend",
+        "ui"
+      ],
       "status": "ready",
       "parent_id": "STORY-1",
       "assignee": null,
-      "priority": "Medium"
+      "priority": "Medium",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-2",
@@ -62,11 +83,18 @@
         "Invalid email format is rejected with a clear message when an email value is entered.",
         "Valid inputs proceed to server authentication request without client-side validation errors."
       ],
-      "labels": ["ai-generated", "task", "frontend", "validation"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "frontend",
+        "validation"
+      ],
       "status": "ready",
       "parent_id": "STORY-1",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-3",
@@ -78,11 +106,18 @@
         "Authentication failures display only a generic message such as invalid username/email or password.",
         "Error states clear appropriately when the user corrects input and resubmits."
       ],
-      "labels": ["ai-generated", "task", "frontend", "ux"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "frontend",
+        "ux"
+      ],
       "status": "ready",
       "parent_id": "STORY-1",
       "assignee": null,
-      "priority": "Medium"
+      "priority": "Medium",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "EPIC-2",
@@ -96,10 +131,17 @@
         "Authenticated session persists until logout or configured session expiry.",
         "Logout terminates the active session and redirects to login page."
       ],
-      "labels": ["ai-generated", "login", "authentication", "session"],
+      "labels": [
+        "ai-generated",
+        "login",
+        "authentication",
+        "session"
+      ],
       "status": "ready",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-2",
@@ -112,11 +154,17 @@
         "After successful authentication, user is redirected to dashboard/home.",
         "Invalid credentials are rejected and user remains on login page with a generic error."
       ],
-      "labels": ["ai-generated", "story", "authentication"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "authentication"
+      ],
       "status": "ready",
       "parent_id": "EPIC-2",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-4",
@@ -129,11 +177,18 @@
         "Valid credentials produce authenticated success response with session/token payload.",
         "Invalid credentials produce a failure response mapped to generic login error behavior."
       ],
-      "labels": ["ai-generated", "task", "backend", "authentication"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "backend",
+        "authentication"
+      ],
       "status": "ready",
       "parent_id": "STORY-2",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-5",
@@ -145,11 +200,18 @@
         "If redirect target is unavailable, system falls back to a safe default authorized page.",
         "Redirect logic runs only after authenticated state/session is established."
       ],
-      "labels": ["ai-generated", "task", "frontend", "routing"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "frontend",
+        "routing"
+      ],
       "status": "ready",
       "parent_id": "STORY-2",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-3",
@@ -162,11 +224,18 @@
         "After logout, user is redirected to login page.",
         "After logout, previously protected pages are no longer accessible without re-authentication."
       ],
-      "labels": ["ai-generated", "story", "logout", "session"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "logout",
+        "session"
+      ],
       "status": "ready",
       "parent_id": "EPIC-2",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-6",
@@ -178,11 +247,18 @@
         "Triggering logout calls backend/session termination endpoint.",
         "Client clears local authentication state and navigates to login page on success."
       ],
-      "labels": ["ai-generated", "task", "frontend", "logout"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "frontend",
+        "logout"
+      ],
       "status": "ready",
       "parent_id": "STORY-3",
       "assignee": null,
-      "priority": "Medium"
+      "priority": "Medium",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-7",
@@ -194,11 +270,18 @@
         "System returns success response when session invalidation completes.",
         "Subsequent requests with invalidated session/token are treated as unauthenticated."
       ],
-      "labels": ["ai-generated", "task", "backend", "session"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "backend",
+        "session"
+      ],
       "status": "ready",
       "parent_id": "STORY-3",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "EPIC-3",
@@ -212,10 +295,17 @@
         "Session inactivity timeout is defined and enforced.",
         "Password storage uses hashed format and plain-text display is prevented."
       ],
-      "labels": ["ai-generated", "security", "access-control", "login"],
+      "labels": [
+        "ai-generated",
+        "security",
+        "access-control",
+        "login"
+      ],
       "status": "ready",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-4",
@@ -227,11 +317,17 @@
         "Unauthenticated access attempt redirects to login page.",
         "After successful login, user can access previously requested protected area if supported by routing design."
       ],
-      "labels": ["ai-generated", "story", "access-control"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "access-control"
+      ],
       "status": "needs-review",
       "parent_id": "EPIC-3",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-8",
@@ -243,11 +339,18 @@
         "Guard denies unauthenticated requests and triggers redirect to login endpoint/page.",
         "Authenticated requests pass through and render requested protected resource."
       ],
-      "labels": ["ai-generated", "task", "backend", "access-control"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "backend",
+        "access-control"
+      ],
       "status": "ready",
       "parent_id": "STORY-4",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-5",
@@ -260,11 +363,17 @@
         "Authentication failure message remains generic and does not reveal credential component validity.",
         "Sensitive authentication logs do not include plaintext passwords."
       ],
-      "labels": ["ai-generated", "story", "security"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "security"
+      ],
       "status": "ready",
       "parent_id": "EPIC-3",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-9",
@@ -276,11 +385,18 @@
         "Application configuration documents required TLS/HTTPS settings for environments.",
         "Security verification confirms no credential submission occurs over plaintext transport."
       ],
-      "labels": ["ai-generated", "task", "security", "infrastructure"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "security",
+        "infrastructure"
+      ],
       "status": "needs-review",
       "parent_id": "STORY-5",
       "assignee": null,
-      "priority": "High"
+      "priority": "High",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-10",
@@ -292,11 +408,18 @@
         "Authentication compares submitted password to stored hash with approved verifier.",
         "No code path logs or returns plaintext password data."
       ],
-      "labels": ["ai-generated", "task", "backend", "security"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "backend",
+        "security"
+      ],
       "status": "ready",
       "parent_id": "STORY-5",
       "assignee": null,
-      "priority": "Highest"
+      "priority": "Highest",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "STORY-6",
@@ -309,11 +432,18 @@
         "Expired session forces re-authentication on next protected action.",
         "Timeout behavior is covered by automated tests."
       ],
-      "labels": ["ai-generated", "story", "session", "security"],
+      "labels": [
+        "ai-generated",
+        "story",
+        "session",
+        "security"
+      ],
       "status": "needs-review",
       "parent_id": "EPIC-3",
       "assignee": null,
-      "priority": "Medium"
+      "priority": "Medium",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     },
     {
       "id": "TASK-11",
@@ -325,11 +455,18 @@
         "Sessions exceeding configured inactivity duration are invalidated.",
         "Expired sessions cannot access protected endpoints and are redirected to login."
       ],
-      "labels": ["ai-generated", "task", "backend", "session"],
+      "labels": [
+        "ai-generated",
+        "task",
+        "backend",
+        "session"
+      ],
       "status": "needs-review",
       "parent_id": "STORY-6",
       "assignee": null,
-      "priority": "Medium"
+      "priority": "Medium",
+      "original_estimate": "1h",
+      "remaining_estimate": "1h"
     }
   ]
 }
