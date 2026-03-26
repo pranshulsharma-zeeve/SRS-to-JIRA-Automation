@@ -39,6 +39,8 @@ jobs:
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt: |
+            Project config:
+            Read project-config.md and follow it strictly.
             Jira issue: ${{ github.event.inputs.jira_key }}
           
             Task:
