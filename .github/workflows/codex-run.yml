@@ -50,6 +50,8 @@ jobs:
             - Do not refactor unrelated files.
             - If the task is ambiguous, choose the safest small implementation that matches the issue text.
             - Update tests if needed.
+            - Do not create or modify any files under .github/
+            - Do not create CI/CD workflows
             - Summarize exactly what changed in codex-output.md.
           
             Make the requested code changes.
@@ -68,8 +70,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git restore --staged codex-output.md || true
-          rm -f codex-output.md
+          # Never allow generated helper files to be committed
+          git restore --staged codex-output.md codex-prompt.txt || true
+          rm -f codex-output.md codex-prompt.txt
+
+          # Never allow workflow changes to be committed
+          git restore --staged .github/workflows/* || true
+          git checkout -- .github/workflows/* || true
+
           if git diff --cached --quiet; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             echo "No changes to commit"
