@@ -40,8 +40,17 @@ jobs:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt: |
             Jira issue: ${{ github.event.inputs.jira_key }}
+          
             Task:
             ${{ github.event.inputs.task_description }}
+          
+            Instructions:
+            - Make only the minimum necessary code changes to complete the task.
+            - Follow the existing project structure and coding style.
+            - Do not refactor unrelated files.
+            - If the task is ambiguous, choose the safest small implementation that matches the issue text.
+            - Update tests if needed.
+            - Summarize exactly what changed in codex-output.md.
           
             Make the requested code changes.
             Keep the change focused and minimal.
@@ -53,7 +62,7 @@ jobs:
           
       - name: Create branch and commit changes
         run: |
-          BRANCH="feature/${{ github.event.inputs.jira_key }}"
+          BRANCH="feature/${{ github.event.inputs.jira_key }}-${{ github.run_number }}"
           git checkout -b "$BRANCH"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
