@@ -52,3 +52,37 @@ flowchart TD
 
 GitHub CLI (`gh`) installation is handled by the Codex environment setup script at `/opt/codex/setup_universal.sh`.
 GitHub API automation also requires a `GH_TOKEN` environment variable to be set in the runtime environment.
+
+## Foundation Modules
+
+This repository now includes baseline application modules for the login flow implementation:
+
+- `frontend/`: Next.js + TypeScript + Tailwind CSS structure
+- `backend/`: Node.js ESM service structure
+
+## Local Development Setup
+
+Run these commands from the repository root:
+
+```bash
+npm install
+npm run test --workspace frontend
+npm run test --workspace backend
+```
+
+Start development servers:
+
+```bash
+npm run dev --workspace frontend
+npm run dev --workspace backend
+```
+
+## PR Check Command
+
+Use the following command in CI for pull requests:
+
+```bash
+npm run ci:pr
+```
+
+This runs linting and tests for both `frontend` and `backend`.
