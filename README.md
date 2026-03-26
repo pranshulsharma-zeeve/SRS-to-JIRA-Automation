@@ -52,3 +52,48 @@ flowchart TD
 
 GitHub CLI (`gh`) installation is handled by the Codex environment setup script at `/opt/codex/setup_universal.sh`.
 GitHub API automation also requires a `GH_TOKEN` environment variable to be set in the runtime environment.
+
+## Project Foundation Setup
+
+The repository includes baseline `frontend` and `backend` modules with matching folder structure:
+
+```text
+frontend/
+  src/
+  tests/
+backend/
+  src/
+  tests/
+scripts/
+  lint.sh
+  test.sh
+  ci-check.sh
+```
+
+### Local development setup
+
+1. Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+2. Run lint checks for frontend and backend:
+
+```bash
+./scripts/lint.sh
+```
+
+3. Run tests for frontend and backend:
+
+```bash
+./scripts/test.sh
+```
+
+### CI entrypoint
+
+Use the following command in pull-request CI to run both linting and tests:
+
+```bash
+./scripts/ci-check.sh
+```
