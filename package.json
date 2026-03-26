@@ -1,0 +1,11 @@
+{
+  "name": "srs-to-jira-automation",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "ci:pr": "npm run lint --workspace frontend && npm run test --workspace frontend && npm run lint --workspace backend && npm run test --workspace backend"
+  }
+}
